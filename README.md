@@ -264,3 +264,30 @@ git commit -m "refactor(api): 重构用户认证拦截器，优化异常处理�
 - 合并 `dev` 到 `master` 前必须经过 `release` 分支验证，确保发布内容可回滚。
 - 每次正式发布需在 `master` 上打 Tag，命名格式：`v<主版本>.<次版本>.<补丁版本>`（如 `v1.2.0`）。
 
+### 7.5 Exhibition
+
+<img width="1772" height="812" alt="QQ20261108-131803" src="https://github.com/user-attachments/assets/0fa056e2-9162-4e9a-a633-ac61f821e9e4" />
+<img width="1902" height="908" alt="QQ20261108-132505" src="https://github.com/user-attachments/assets/88c05880-95f7-438f-a8f9-224b004e291c" />
+<img width="1896" height="909" alt="QQ20261108-132544" src="https://github.com/user-attachments/assets/d67366d5-207e-43da-92f5-bea20667c0e9" />
+<img width="1885" height="910" alt="QQ20261108-132557" src="https://github.com/user-attachments/assets/7b8c0bbf-b478-4bdc-852c-c7e3e8e604be" />
+<img width="1894" height="912" alt="QQ20261108-132639" src="https://github.com/user-attachments/assets/c4ec10b7-2c64-49d6-bc23-307c09370cb8" />
+<img width="1888" height="910" alt="QQ20261108-132739" src="https://github.com/user-attachments/assets/5163fa3f-aecc-4883-9dba-dc5f5af834d6" />
+<img width="1895" height="898" alt="QQ20261108-132713" src="https://github.com/user-attachments/assets/6eba5ee2-20af-4167-8344-a907cc10a261" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
