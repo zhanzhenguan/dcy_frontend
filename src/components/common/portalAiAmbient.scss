@@ -1,0 +1,686 @@
+/* Shared AI ambient canvas (banner + auth + sidebar) */
+.portal-ai-ambient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.portal-ai-ambient__glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  opacity: 0.5;
+  will-change: transform;
+  animation: portal-ai-glow 16s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+}
+
+.portal-ai-ambient__glow--tl {
+  top: -8%;
+  left: -6%;
+  width: min(52vw, 460px);
+  height: min(52vw, 460px);
+  background: color-mix(in srgb, #4c3d8a 32%, transparent);
+}
+
+.portal-ai-ambient__glow--br {
+  right: -8%;
+  bottom: -12%;
+  width: min(56vw, 500px);
+  height: min(56vw, 500px);
+  background: color-mix(in srgb, #1e3a5f 36%, transparent);
+  animation-delay: -6s;
+}
+
+.portal-ai-ambient__core {
+  position: absolute;
+  top: 42%;
+  left: 48%;
+  width: min(36vw, 320px);
+  height: min(36vw, 320px);
+  translate: -50% -50%;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, #334155 28%, transparent) 0%,
+    color-mix(in srgb, #1e293b 12%, transparent) 42%,
+    transparent 70%
+  );
+  filter: blur(8px);
+  animation: portal-ai-core 9s ease-in-out infinite;
+}
+
+.portal-ai-ambient__mesh {
+  position: absolute;
+  inset: -20%;
+  background-image:
+    linear-gradient(rgba(148, 163, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 255, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 65% at 50% 45%,
+    #000 20%,
+    transparent 75%
+  );
+  transform: perspective(700px) rotateX(58deg) translateY(-8%);
+  opacity: 0.5;
+  animation: portal-ai-mesh 22s ease-in-out infinite alternate;
+}
+
+.portal-ai-ambient__orbit {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px dashed rgba(165, 180, 252, 0.28);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 0 36px rgba(88, 101, 242, 0.14);
+}
+
+.portal-ai-ambient__orbit::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: #c4b5fd;
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.2),
+    0 0 14px rgba(196, 181, 253, 0.95);
+  transform: translateX(-50%);
+}
+
+.portal-ai-ambient__orbit--lg {
+  top: 8%;
+  right: -8%;
+  width: min(42vw, 420px);
+  height: min(42vw, 420px);
+  animation: portal-ai-orbit 32s linear infinite;
+}
+
+.portal-ai-ambient__orbit--sm {
+  bottom: 6%;
+  left: -6%;
+  width: min(28vw, 260px);
+  height: min(28vw, 260px);
+  border-color: rgba(147, 197, 253, 0.22);
+  animation: portal-ai-orbit 22s linear infinite reverse;
+}
+
+.portal-ai-ambient__scan {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(147, 197, 253, 0.05) 48%,
+    rgba(196, 181, 253, 0.12) 50%,
+    rgba(147, 197, 253, 0.05) 52%,
+    transparent 58%
+  );
+  background-size: 240% 100%;
+  animation: portal-ai-scan 9s ease-in-out infinite;
+  mix-blend-mode: soft-light;
+  opacity: 0.85;
+}
+
+.portal-ai-ambient__net {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.72;
+}
+
+.portal-ai-ambient__net-lines {
+  fill: none;
+  stroke: url(#portalAiNetStroke);
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-dasharray: 5 12;
+  animation: portal-ai-dash 14s linear infinite;
+}
+
+.portal-ai-ambient__signals circle {
+  filter: drop-shadow(0 0 6px rgba(165, 180, 252, 0.9));
+}
+
+.portal-ai-ambient__net-nodes {
+  fill: rgba(226, 232, 255, 0.85);
+}
+
+.portal-ai-ambient__node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: portal-ai-node 4.2s ease-in-out infinite;
+}
+
+.portal-ai-ambient__node:nth-child(3n) {
+  animation-duration: 5.2s;
+  animation-delay: -1.4s;
+}
+
+.portal-ai-ambient__node:nth-child(3n + 1) {
+  animation-duration: 3.8s;
+  animation-delay: -0.6s;
+}
+
+.portal-ai-ambient__node--hub {
+  fill: url(#portalAiHub);
+  animation: portal-ai-hub 3.2s ease-in-out infinite;
+}
+
+.portal-ai-ambient__hub-ring {
+  fill: none;
+  stroke: rgba(167, 139, 250, 0.45);
+  stroke-width: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: portal-ai-ring 3.6s ease-out infinite;
+}
+
+.portal-ai-ambient__hub-ring--late {
+  stroke: rgba(88, 101, 242, 0.35);
+  animation-delay: 1.2s;
+}
+
+.portal-ai-ambient__particles {
+  position: absolute;
+  inset: 0;
+}
+
+.portal-ai-ambient__particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: #c7d2fe;
+  box-shadow: 0 0 10px rgba(165, 180, 252, 0.65);
+  animation: portal-ai-particle 10s ease-in-out infinite;
+}
+
+.portal-ai-ambient__particles span:nth-child(odd) {
+  background: #ddd6fe;
+  box-shadow: 0 0 10px rgba(196, 181, 253, 0.7);
+}
+
+.portal-ai-ambient__particles span:nth-child(1) {
+  top: 16%;
+  left: 12%;
+  animation-duration: 8.5s;
+}
+.portal-ai-ambient__particles span:nth-child(2) {
+  top: 26%;
+  left: 74%;
+  animation-duration: 11s;
+  animation-delay: -2s;
+}
+.portal-ai-ambient__particles span:nth-child(3) {
+  top: 60%;
+  left: 16%;
+  animation-duration: 9.5s;
+  animation-delay: -1s;
+}
+.portal-ai-ambient__particles span:nth-child(4) {
+  top: 72%;
+  left: 56%;
+  animation-duration: 12s;
+  animation-delay: -3s;
+}
+.portal-ai-ambient__particles span:nth-child(5) {
+  top: 38%;
+  left: 88%;
+  width: 2px;
+  height: 2px;
+  animation-duration: 7.8s;
+  animation-delay: -4s;
+}
+.portal-ai-ambient__particles span:nth-child(6) {
+  top: 78%;
+  left: 82%;
+  animation-duration: 13s;
+  animation-delay: -1.5s;
+}
+.portal-ai-ambient__particles span:nth-child(7) {
+  top: 12%;
+  left: 46%;
+  width: 2px;
+  height: 2px;
+  animation-duration: 9s;
+  animation-delay: -2.5s;
+}
+.portal-ai-ambient__particles span:nth-child(8) {
+  top: 50%;
+  left: 34%;
+  animation-duration: 10.5s;
+  animation-delay: -0.8s;
+}
+.portal-ai-ambient__particles span:nth-child(9) {
+  top: 44%;
+  left: 64%;
+  width: 2px;
+  height: 2px;
+  animation-duration: 8.2s;
+  animation-delay: -3.4s;
+}
+.portal-ai-ambient__particles span:nth-child(10) {
+  top: 84%;
+  left: 28%;
+  animation-duration: 11.5s;
+  animation-delay: -5s;
+}
+
+.portal-ai-ambient__frame {
+  position: absolute;
+  inset: 1.25rem 1rem;
+  z-index: 2;
+}
+
+.portal-ai-ambient__bracket {
+  position: absolute;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1.5px solid rgba(196, 181, 253, 0.4);
+  opacity: 0.75;
+}
+
+.portal-ai-ambient__bracket--tl {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-top-left-radius: 2px;
+}
+
+.portal-ai-ambient__bracket--tr {
+  top: 0;
+  right: 0;
+  border-left: 0;
+  border-bottom: 0;
+  border-top-right-radius: 2px;
+}
+
+.portal-ai-ambient__bracket--bl {
+  bottom: 0;
+  left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom-left-radius: 2px;
+}
+
+.portal-ai-ambient__bracket--br {
+  bottom: 0;
+  right: 0;
+  border-left: 0;
+  border-top: 0;
+  border-bottom-right-radius: 2px;
+}
+
+.portal-ai-ambient--auth {
+  opacity: 0.92;
+}
+
+.portal-ai-ambient--auth .portal-ai-ambient__frame {
+  display: none;
+}
+
+.portal-ai-ambient--sidebar {
+  opacity: 0.55;
+}
+
+.portal-ai-ambient--sidebar .portal-ai-ambient__frame {
+  display: none;
+}
+
+.portal-ai-ambient--sidebar .portal-ai-ambient__orbit--lg {
+  width: 220px;
+  height: 220px;
+  top: 8%;
+  right: -40%;
+}
+
+.portal-ai-ambient--sidebar .portal-ai-ambient__orbit--sm {
+  width: 140px;
+  height: 140px;
+  bottom: 18%;
+  left: -35%;
+}
+
+/* —— Hero: animated light field (no motifs) —— */
+.portal-ai-ambient--hero .portal-ai-ambient__glow {
+  opacity: 0.52;
+  filter: blur(140px);
+  will-change: transform, opacity;
+}
+
+.portal-ai-ambient--hero .portal-ai-ambient__glow--tl {
+  top: -20%;
+  left: -14%;
+  width: min(54vw, 480px);
+  height: min(54vw, 480px);
+  background: color-mix(in srgb, #5865f2 32%, transparent);
+  animation: portal-ai-hero-glow-tl 14s ease-in-out infinite alternate;
+}
+
+.portal-ai-ambient--hero .portal-ai-ambient__glow--br {
+  right: -18%;
+  bottom: -24%;
+  width: min(60vw, 540px);
+  height: min(60vw, 540px);
+  background: color-mix(in srgb, #0ea5e9 18%, transparent);
+  animation: portal-ai-hero-glow-br 18s ease-in-out infinite alternate;
+}
+
+.portal-ai-ambient--hero .portal-ai-ambient__glow--mid {
+  top: 42%;
+  left: 56%;
+  width: min(38vw, 340px);
+  height: min(38vw, 340px);
+  opacity: 0.32;
+  filter: blur(120px);
+  background: color-mix(in srgb, #818cf8 22%, transparent);
+  animation: portal-ai-hero-glow-mid 16s ease-in-out infinite alternate;
+}
+
+.portal-ai-ambient__shimmer {
+  position: absolute;
+  inset: -20% -30%;
+  background: linear-gradient(
+    115deg,
+    transparent 38%,
+    rgba(147, 197, 253, 0.045) 46%,
+    rgba(196, 181, 253, 0.08) 50%,
+    rgba(147, 197, 253, 0.045) 54%,
+    transparent 62%
+  );
+  background-size: 220% 100%;
+  mix-blend-mode: soft-light;
+  opacity: 0.7;
+  animation: portal-ai-hero-shimmer 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.portal-ai-ambient__particles--hero span {
+  width: 2.5px;
+  height: 2.5px;
+  opacity: 0;
+  background: #bae6fd;
+  box-shadow: 0 0 10px rgba(125, 211, 252, 0.55);
+  animation: portal-ai-hero-dust 9s ease-in-out infinite;
+}
+
+.portal-ai-ambient__particles--hero span:nth-child(odd) {
+  background: #c7d2fe;
+  box-shadow: 0 0 10px rgba(165, 180, 252, 0.5);
+}
+
+.portal-ai-ambient__particles--hero span:nth-child(1) {
+  top: 18%;
+  left: 22%;
+  animation-duration: 8s;
+}
+.portal-ai-ambient__particles--hero span:nth-child(2) {
+  top: 28%;
+  left: 72%;
+  animation-duration: 10s;
+  animation-delay: -2s;
+}
+.portal-ai-ambient__particles--hero span:nth-child(3) {
+  top: 58%;
+  left: 14%;
+  animation-duration: 11s;
+  animation-delay: -4s;
+}
+.portal-ai-ambient__particles--hero span:nth-child(4) {
+  top: 64%;
+  left: 78%;
+  animation-duration: 9.5s;
+  animation-delay: -1.5s;
+}
+.portal-ai-ambient__particles--hero span:nth-child(5) {
+  top: 42%;
+  left: 48%;
+  width: 2px;
+  height: 2px;
+  animation-duration: 12s;
+  animation-delay: -3s;
+}
+.portal-ai-ambient__particles--hero span:nth-child(6) {
+  top: 76%;
+  left: 38%;
+  animation-duration: 10.5s;
+  animation-delay: -5s;
+}
+
+@keyframes portal-ai-hero-glow-tl {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.42;
+  }
+  to {
+    transform: translate3d(4%, 5%, 0) scale(1.12);
+    opacity: 0.62;
+  }
+}
+
+@keyframes portal-ai-hero-glow-br {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.38;
+  }
+  to {
+    transform: translate3d(-5%, -4%, 0) scale(1.1);
+    opacity: 0.58;
+  }
+}
+
+@keyframes portal-ai-hero-glow-mid {
+  from {
+    transform: translate3d(-50%, -50%, 0) scale(0.92);
+    opacity: 0.22;
+  }
+  to {
+    transform: translate3d(-46%, -54%, 0) scale(1.14);
+    opacity: 0.4;
+  }
+}
+
+@keyframes portal-ai-hero-shimmer {
+  0%,
+  100% {
+    background-position: 120% 0;
+    opacity: 0.35;
+  }
+  50% {
+    background-position: -20% 0;
+    opacity: 0.75;
+  }
+}
+
+@keyframes portal-ai-hero-dust {
+  0%,
+  100% {
+    transform: translate3d(0, 8px, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  55% {
+    transform: translate3d(10px, -22px, 0);
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.25;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .portal-ai-ambient__orbit--lg {
+    width: min(58vw, 260px);
+    height: min(58vw, 260px);
+    top: 12%;
+    right: -18%;
+    opacity: 0.55;
+  }
+
+  .portal-ai-ambient__orbit--sm {
+    width: min(36vw, 160px);
+    height: min(36vw, 160px);
+    bottom: 10%;
+    left: -14%;
+    opacity: 0.45;
+  }
+
+  .portal-ai-ambient__frame {
+    display: none;
+  }
+
+  .portal-ai-ambient__mesh {
+    opacity: 0.28;
+  }
+
+  .portal-ai-ambient__net {
+    opacity: 0.5;
+  }
+
+  .portal-ai-ambient__core {
+    width: min(48vw, 220px);
+    height: min(48vw, 220px);
+  }
+}
+
+@keyframes portal-ai-glow {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2.5%, 3.5%, 0) scale(1.08);
+  }
+}
+
+@keyframes portal-ai-core {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes portal-ai-mesh {
+  from {
+    transform: perspective(700px) rotateX(58deg) translate3d(0, -8%, 0);
+  }
+  to {
+    transform: perspective(700px) rotateX(58deg) translate3d(-2.5%, -5%, 0);
+  }
+}
+
+@keyframes portal-ai-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes portal-ai-scan {
+  0%,
+  100% {
+    background-position: 125% 0;
+  }
+  50% {
+    background-position: -25% 0;
+  }
+}
+
+@keyframes portal-ai-dash {
+  to {
+    stroke-dashoffset: -140;
+  }
+}
+
+@keyframes portal-ai-node {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes portal-ai-hub {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes portal-ai-ring {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.72);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+@keyframes portal-ai-particle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.28;
+  }
+  40% {
+    transform: translate3d(6px, -16px, 0);
+    opacity: 0.95;
+  }
+  70% {
+    transform: translate3d(-4px, -8px, 0);
+    opacity: 0.55;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .portal-ai-ambient__glow,
+  .portal-ai-ambient__core,
+  .portal-ai-ambient__mesh,
+  .portal-ai-ambient__orbit,
+  .portal-ai-ambient__scan,
+  .portal-ai-ambient__net-lines,
+  .portal-ai-ambient__node,
+  .portal-ai-ambient__node--hub,
+  .portal-ai-ambient__hub-ring,
+  .portal-ai-ambient__particles span,
+  .portal-ai-ambient__shimmer {
+    animation: none !important;
+  }
+
+  .portal-ai-ambient__signals {
+    display: none;
+  }
+
+  .home-banner__bg > .portal-ai-ambient {
+    animation: none !important;
+  }
+}

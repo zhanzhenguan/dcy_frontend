@@ -1,0 +1,257 @@
+:root {
+  /*
+   * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   * SINGLE SOURCE OF TRUTH — brand theme
+   * Edit only the tokens below; the whole app follows.
+   * Verify after change: `/` · `/sign-in` · `/dashboard`
+   * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   */
+  --portal-blue: #0052cc;
+  --portal-purple: #6554c0;
+  --portal-green: #22c55e;
+  --portal-white: #ffffff;
+
+  /* Hero / auth canvas — same field for portal banner + login */
+  --portal-hero-deep: #0f172a;
+  --portal-hero-mid: #132038;
+  --portal-hero-lift: #1e293b;
+  --portal-hero-edge: #1a2744;
+  --portal-hero-bg:
+    radial-gradient(
+      ellipse 55% 70% at 18% 32%,
+      color-mix(in srgb, #5865f2 22%, transparent) 0%,
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 50% 62% at 82% 42%,
+      color-mix(in srgb, #38bdf8 11%, transparent) 0%,
+      color-mix(in srgb, #1e3a5f 28%, transparent) 42%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 48% 88%,
+      color-mix(in srgb, #312e81 14%, transparent) 0%,
+      transparent 65%
+    ),
+    linear-gradient(
+      155deg,
+      #1a2744 0%,
+      #132038 36%,
+      var(--portal-hero-deep) 68%,
+      #080d18 100%
+    );
+
+  /* Derived (auto) — usually no need to edit */
+  --portal-blue-soft: color-mix(in srgb, var(--portal-blue) 78%, white);
+  --portal-purple-soft: color-mix(in srgb, var(--portal-purple) 78%, white);
+  --portal-green-hover: color-mix(in srgb, var(--portal-green) 82%, black);
+  --portal-sky: color-mix(in srgb, var(--portal-blue) 65%, white);
+  --portal-violet: color-mix(in srgb, var(--portal-purple) 65%, white);
+  /* Login / brand: blue → purple */
+  --portal-gradient-from: #5865f2;
+  --portal-gradient-to: #8e5aff;
+  --portal-gradient: linear-gradient(
+    90deg,
+    var(--portal-gradient-from) 0%,
+    var(--portal-gradient-to) 100%
+  );
+  /* Trial CTA — purple → violet */
+  --portal-cta-gradient: linear-gradient(
+    90deg,
+    #6366f1 0%,
+    #8b5cf6 100%
+  );
+  --primary-gradient: var(--portal-gradient);
+
+  /* 浅色侧栏选中：登录紫蓝渐变族 */
+  --portal-lotus: color-mix(in srgb, var(--portal-gradient-from) 12%, white);
+  --portal-lotus-strong: color-mix(in srgb, var(--portal-gradient-from) 16%, white);
+  --portal-lotus-foreground: color-mix(
+    in srgb,
+    var(--portal-gradient-from) 48%,
+    #0f172a
+  );
+
+  --radius: 0.625rem;
+  /*
+   * 浅色层次：灰底画布 + 白卡片/顶栏
+   * 暗色同理：深底 + 略亮的 card/surface
+   */
+  --background: #f4f6fb;
+  --foreground: #0f172a;
+  --card: var(--portal-white);
+  --card-foreground: #0f172a;
+  --popover: var(--portal-white);
+  --popover-foreground: #0f172a;
+  /* 顶栏、卡片、浮层等抬起表面 */
+  --surface: var(--portal-white);
+
+  /* 浅色主题色 = 登录页紫蓝渐变起点 */
+  --primary: var(--portal-gradient-from);
+  --primary-foreground: var(--portal-white);
+  --secondary: color-mix(in srgb, var(--portal-gradient-from) 10%, white);
+  --secondary-foreground: color-mix(
+    in srgb,
+    var(--portal-gradient-from) 52%,
+    black
+  );
+  --muted: color-mix(in srgb, var(--portal-gradient-from) 6%, white);
+  --muted-foreground: #475569;
+  /* 通用交互高亮跟主色，避免 accent 偏到渐变另一端 */
+  --accent: color-mix(in srgb, var(--primary) 10%, white);
+  --accent-foreground: color-mix(in srgb, var(--primary) 55%, black);
+  --success: var(--portal-green);
+  --success-foreground: var(--portal-white);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: var(--portal-gradient-from);
+
+  --chart-1: var(--portal-gradient-from);
+  --chart-2: var(--portal-gradient-to);
+  --chart-3: var(--portal-green);
+  --chart-4: var(--portal-sky);
+  --chart-5: var(--portal-violet);
+
+  --sidebar: var(--portal-white);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--portal-gradient-from);
+  --sidebar-primary-foreground: var(--portal-white);
+  --sidebar-accent: color-mix(in srgb, var(--portal-gradient-from) 10%, white);
+  --sidebar-accent-foreground: color-mix(
+    in srgb,
+    var(--portal-gradient-from) 45%,
+    #0f172a
+  );
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--portal-gradient-from);
+}
+
+.dark {
+  --background: #0b1224;
+  --foreground: #f1f5f9;
+  --card: #111827;
+  --card-foreground: #f1f5f9;
+  --popover: #111827;
+  --popover-foreground: #f1f5f9;
+  --surface: var(--card);
+  --primary: var(--portal-gradient-from);
+  --primary-foreground: var(--portal-white);
+  --secondary: color-mix(in srgb, var(--portal-purple) 35%, #0b1224);
+  --secondary-foreground: color-mix(in srgb, var(--portal-purple) 25%, white);
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: color-mix(in srgb, var(--primary) 22%, #0b1224);
+  --accent-foreground: color-mix(in srgb, var(--primary) 25%, white);
+  --success: var(--portal-green);
+  --success-foreground: var(--portal-white);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: #334155;
+  --input: #334155;
+  --ring: var(--portal-purple-soft);
+  --chart-1: var(--portal-blue-soft);
+  --chart-2: var(--portal-purple-soft);
+  --chart-3: var(--portal-green);
+  --chart-4: var(--portal-sky);
+  --chart-5: var(--portal-violet);
+  --sidebar: var(--portal-hero-deep);
+  --sidebar-foreground: #e8eef9;
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: color-mix(in srgb, var(--primary) 22%, #0f172a);
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: color-mix(in srgb, white 10%, transparent);
+  --sidebar-ring: var(--primary);
+}
+
+@theme inline {
+  --font-inter: 'Inter', 'sans-serif';
+  --font-manrope: 'Manrope', 'sans-serif';
+  --font-fira-sans: 'Fira Sans', 'Inter', sans-serif;
+  --font-fira-code: 'Fira Code', ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Brand utilities: bg-portal-blue / text-portal-green … */
+  --color-portal-blue: var(--portal-blue);
+  --color-portal-purple: var(--portal-purple);
+  --color-portal-green: var(--portal-green);
+  --color-portal-white: var(--portal-white);
+
+  /* Remap Tailwind emerald* → portal green (legacy success styles follow brand) */
+  --color-emerald-50: color-mix(in srgb, var(--portal-green) 8%, white);
+  --color-emerald-100: color-mix(in srgb, var(--portal-green) 16%, white);
+  --color-emerald-200: color-mix(in srgb, var(--portal-green) 28%, white);
+  --color-emerald-300: color-mix(in srgb, var(--portal-green) 42%, white);
+  --color-emerald-400: color-mix(in srgb, var(--portal-green) 72%, white);
+  --color-emerald-500: var(--portal-green);
+  --color-emerald-600: var(--portal-green-hover);
+  --color-emerald-700: color-mix(in srgb, var(--portal-green) 78%, black);
+  --color-emerald-800: color-mix(in srgb, var(--portal-green) 55%, black);
+  --color-emerald-900: color-mix(in srgb, var(--portal-green) 35%, black);
+  --color-emerald-950: color-mix(in srgb, var(--portal-green) 18%, black);
+
+  /* Remap common violet* brand accents → portal purple */
+  --color-violet-50: color-mix(in srgb, var(--portal-purple) 8%, white);
+  --color-violet-100: color-mix(in srgb, var(--portal-purple) 16%, white);
+  --color-violet-200: color-mix(in srgb, var(--portal-purple) 28%, white);
+  --color-violet-300: color-mix(in srgb, var(--portal-purple) 42%, white);
+  --color-violet-400: color-mix(in srgb, var(--portal-purple) 72%, white);
+  --color-violet-500: var(--portal-purple);
+  --color-violet-600: color-mix(in srgb, var(--portal-purple) 88%, black);
+  --color-violet-700: color-mix(in srgb, var(--portal-purple) 72%, black);
+  --color-violet-800: color-mix(in srgb, var(--portal-purple) 55%, black);
+  --color-violet-900: color-mix(in srgb, var(--portal-purple) 35%, black);
+  --color-violet-950: color-mix(in srgb, var(--portal-purple) 18%, black);
+
+  /* Remap common blue* brand accents → portal blue */
+  --color-blue-50: color-mix(in srgb, var(--portal-blue) 8%, white);
+  --color-blue-100: color-mix(in srgb, var(--portal-blue) 16%, white);
+  --color-blue-200: color-mix(in srgb, var(--portal-blue) 28%, white);
+  --color-blue-300: color-mix(in srgb, var(--portal-blue) 42%, white);
+  --color-blue-400: color-mix(in srgb, var(--portal-blue) 72%, white);
+  --color-blue-500: var(--portal-blue);
+  --color-blue-600: color-mix(in srgb, var(--portal-blue) 88%, black);
+  --color-blue-700: color-mix(in srgb, var(--portal-blue) 72%, black);
+  --color-blue-800: color-mix(in srgb, var(--portal-blue) 55%, black);
+  --color-blue-900: color-mix(in srgb, var(--portal-blue) 35%, black);
+  --color-blue-950: color-mix(in srgb, var(--portal-blue) 18%, black);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-surface: var(--surface);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}

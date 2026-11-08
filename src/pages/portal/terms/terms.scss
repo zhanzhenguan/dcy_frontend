@@ -1,0 +1,132 @@
+/* Terms of service — readable legal document */
+.terms-section {
+  font-family: 'DM Sans', var(--font-fira-sans), sans-serif;
+  color: #1e293b;
+}
+
+.terms-section__header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.terms-section__badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  background: rgb(239 246 255);
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--portal-blue);
+}
+
+.terms-section__title {
+  margin: 1rem 0 0;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.terms-section__gradient-text {
+  background-image: var(--portal-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.terms-section__meta {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.terms-section__intro {
+  margin-bottom: 0;
+}
+
+.terms-section__body {
+  border-radius: 1.25rem;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  padding: 1.75rem 1.35rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+@media (min-width: 640px) {
+  .terms-section__body {
+    padding: 2.25rem 2rem;
+  }
+}
+
+.terms-section__chapter + .terms-section__chapter {
+  margin-top: 2.25rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.terms-section__chapter > h2 {
+  margin: 0 0 1.25rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.terms-section__block + .terms-section__block {
+  margin-top: 1.35rem;
+}
+
+.terms-section__block h3 {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.terms-section__subsection {
+  margin-top: 0.85rem;
+}
+
+.terms-section__subsection h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.975rem;
+  font-weight: 650;
+  color: #334155;
+}
+
+.terms-section__p {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: #475569;
+}
+
+.terms-section__list {
+  margin: 0.35rem 0 0.85rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.terms-section__list--nested {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+  padding-left: 1rem;
+  list-style: none;
+}
+
+.terms-section__list li {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #475569;
+}
+
+.terms-section__list li::marker {
+  content: none;
+}
+
+.terms-section strong {
+  font-weight: 700;
+  color: #0f172a;
+}

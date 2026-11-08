@@ -1,0 +1,57 @@
+.portal-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.portal-logo__mark {
+  display: inline-flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2px;
+  border-radius: 0.7rem;
+  background: linear-gradient(
+    145deg,
+    var(--portal-purple) 0%,
+    var(--portal-blue) 100%
+  );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--portal-purple) 28%, transparent),
+    0 4px 14px color-mix(in srgb, var(--portal-blue) 30%, transparent);
+}
+
+/* logo_v2 为横向 wordmark，固定宽度 172px，无底色框 */
+.portal-logo--wide .portal-logo__mark {
+  width: 172px;
+  height: calc(172px * 1111 / 3156);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.portal-logo__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  object-fit: contain;
+  object-position: center;
+}
+
+.portal-logo--wide .portal-logo__img {
+  border-radius: 0;
+  object-fit: contain;
+}
+
+.portal-logo__name {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}

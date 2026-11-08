@@ -1,0 +1,23 @@
+@keyframes plans-header-flow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.plans-header-flow {
+  animation: plans-header-flow 8s linear infinite;
+}
+
+.plans-header-flow-slow {
+  animation: plans-header-flow 12s linear infinite reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plans-header-flow,
+  .plans-header-flow-slow {
+    animation: none;
+  }
+}
